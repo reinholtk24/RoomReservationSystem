@@ -1,0 +1,70 @@
+List of requirements: 
+
+
+Title: Initial Setup
+Description: Before the software can be used, the system administrator must login and setup the system. 
+Task 1: Create an option for initial setup. This setup phase must be completed before universities can interact with the software. 
+
+Task 2: The system administrator will be able to login into the system with a username and password provided by the software developers. 
+
+Task 3: The user must upload all information described in the administrator Data user stories. 
+
+
+Title: Upload approved administrator Data 
+
+Description: The user will be able to upload a file containing approved users that will be able to reserve rooms. 
+
+Task 1: There will be an option to select a file path to the excel file the user is trying to upload. 
+Task 2: The file will be sent through a parser 
+Task 3: The information will be sent to the database and stored. 
+Task 4: A password for each user will be randomly generated and sent via email to each administrator on the campus along with a note explaining what it can be used for. 
+
+
+Title: Reserve Room
+
+Description: The user will be able to reserve their room by selecting a time, room , building, date.
+
+Task 1: The user will utilize the UI for selecting a building, first. 
+
+Task 2: The remaining drop-down menus will automatically become populated with the times, dates, and rooms available within the selected building. 
+
+Task 3:  After a time, date, and room are selected for that building, the user selects the “Reserve Room” button, the system will temporarily save this information. 
+Task 4: The user will login and the system will check to make sure the login credentials are within the database. 
+Task 5: After successful login, the database management system will create a relationship between the room, time, date, building selected with the users account and mark that information reserved so that it will no longer show up in available slots to be reserved. 
+
+
+Title: Upload Room Data
+
+Description: The user will have a way to upload an excel file containing room data
+
+Task 1: There will be an option to select a file path to the excel file the user is trying to upload. 
+Task 2: The file will be sent through a parser 
+Task 3: The information will be sent to the database and stored. 
+
+
+Title: Upload Building Data
+
+Description: The user will have a way to upload an excel file containing building data 
+
+Task 1: There will be an option to select a file path to the excel file the user is trying to upload. 
+Task 2: The file will be sent through a parser 
+Task 3: The information will be sent to the database and stored. 
+
+
+Title: View Rooms Reserved
+
+Description: The user will be able to view the current rooms they reserved
+
+Task 1: Provide a, “View Rooms Available” button that when clicked, will show the rooms and times in the building selected. The date and building must be selected first. 
+Task 2: Retrieve the information about a specific building on a specific date from the database for each time and room left available in the building on that date.  
+Task 3: Populate a table with the data to display to the user. 
+
+
+Title: Un-Reserve Rooms
+
+Description: The user will be able to un-reserve a room
+Task 1: The user must login using the credentials setup for them by the original system administrator 
+Task 2: Retrieve information associated with the user's account from the database 
+Task 3: Populate a table with the information for the user to view 
+Task 4: Provide functionality to unreserve a selected room. 
+Task 5: Send information to database to unrelate the room's information with the current user account and change the selected room slot to available. 
