@@ -2,7 +2,7 @@ Name: Kyle Reinholt
 Submission date: 2016-02-15
 Team number: ? 
 Section: CS 410
-Hours worked: 1 Hour
+Hours worked: 
 
 Date: 2016-02-15
 
@@ -12,6 +12,6 @@ Task: Create a parser to separate buildings and room numbers.
 
 Time estimate: 2 Hours 
 
-Actual time: 1 Hour 
+Actual time:
 
 Notes: This will separate something in the following format building(rm #) and ouput them into separate files so that I can easily copy and paste them from the file into a column in an excel spreadsheet. This task in being done in preparation for a CSV file containing all course information for the room reservation system. 
