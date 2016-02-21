@@ -1,17 +1,17 @@
 Name: Kyle Reinholt 
-Submission date: 2016-MM-DD
-Team number: 
+Submission date: 2016-02-22
+Team number: ? 
 Section: CS 410
-Hours worked: 
+Hours worked: 3 hrs 
 
-Date:
+Date: 2016-02-20
 
-Start time:
+Start time: 10:00pm
 
-Task:
+Task: Learning about PHP 
 
-Time estimate:
+Time estimate: 1 hour
 
-Actual time:
+Actual time: 3 hours
 
-Notes:
+Notes: I have the book, Learning PHP, MySQL, and Javascript by O'Reilly. I am reading about PHP while working through the examples in the book and online through codecademy. 

@@ -1,17 +1,17 @@
 Name: Kyle Reinholt 
-Submission date: 2016-MM-DD
-Team number: 
+Submission date: 2016-02-22
+Team number: ? 
 Section: CS 410
-Hours worked: 
+Hours worked: 1 hour 
 
-Date:
+Date: 2016-02-19
 
-Start time:
+Start time: 4:00pm 
 
-Task:
+Task: Add new requirements to group shared document 
 
-Time estimate:
+Time estimate: 30 minutes 
 
-Actual time:
+Actual time: 1 hour 
 
-Notes:
+Notes: I added two new requirements.  

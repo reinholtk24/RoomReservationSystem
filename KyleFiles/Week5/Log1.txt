@@ -1,17 +1,17 @@
 Name: Kyle Reinholt 
-Submission date: 2016-MM-DD
-Team number: 
+Submission date: 2016-02-22
+Team number: ? 
 Section: CS 410
-Hours worked: 
+Hours worked: 1 hr 
 
-Date:
+Date: 2016-02-19
 
-Start time:
+Start time: 1:00pm
 
-Task:
+Task: Meet with stakeholder to figure out more requirements
 
-Time estimate:
+Time estimate: 30 minutes 
 
-Actual time:
+Actual time: 1 hour 
 
-Notes:
+Notes: I discovered that there was a lot more to this system than what I thought. I originally expected that this was a huge project. I didn't realize its massive size until now. 
