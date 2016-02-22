@@ -8,10 +8,9 @@ This Folder contains my work logs for every week starting February 1st, and a li
 #Todo List 
 ***
 
-- Establish goals    
-- Setup Timeline    
-- Sketch GUI 
-- Stay on task 
+- Research Backend Programming Languages 
+- Create a Schedule for Times Available for Pair Programming 
+- Come up with Names for Database Tables 
 
  
 
