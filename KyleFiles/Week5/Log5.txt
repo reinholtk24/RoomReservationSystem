@@ -1,17 +1,17 @@
 Name: Kyle Reinholt 
-Submission date: 2016-MM-DD
+Submission date: 2016-02-22
 Team number: 
 Section: CS 410
-Hours worked: 
+Hours worked: 3 Hours 
 
-Date:
+Date: 2016-02-21
 
-Start time:
+Start time: 10:45pm
 
-Task:
+Task: Solidify Requirements for First Iteration of Room Reservation System
 
-Time estimate:
+Time estimate: 2 hours 
 
-Actual time:
+Actual time: 3 hours 
 
-Notes:
+Notes: We had a meeting in person to discuss new requirements and figure out how to get started actually developing the core of the system. 
