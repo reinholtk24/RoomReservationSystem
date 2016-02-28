@@ -37,14 +37,14 @@ RRSDB.db
 
 Contains 4 tables right now (this may change with time): 
 
-TABLEs in RRSDB.db 
-+-------------------------------------------------------+    
-| users                                                 |    
-| rooms                                                 |    
-| buildings                                             |    
-| room_status                                           |    
-| TODO: add a room_reservation table                    |    
-+-------------------------------------------------------+     
+|TABLEs                              |           
+| ---------------------------------- |   
+| users                              |    
+| rooms                              |    
+| buildings                          |    
+| room_status                        |    
+| TODO: add a room_reservation table |    
+    
 
 For table data definitions, refer to this:    
 [Table Formats](https://docs.google.com/document/d/1TuH4QXDVmixivNLMd0GYS0jrRGVwHpqipmDEyQk-xdA/edit?usp=sharing)    
