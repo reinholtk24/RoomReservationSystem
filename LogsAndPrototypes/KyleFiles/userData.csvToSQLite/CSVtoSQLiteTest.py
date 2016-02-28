@@ -5,9 +5,9 @@
         # and be able to access the information in it and manipulate it. 
 #Program: CSVtoSQLite
 #Sources: SQLite code for storing csv into sqlite:
-        """ [1] http://stackoverflow.com/questions/6547658/how-to-remove-u-from-sqlite3-cursor-fetchall-in-python"""
-        # SQLite Beginner Tutorial to understand the sqlite code:
-        """ [2] http://zetcode.com/db/sqlitepythontutorial/"""
+""" [1] http://stackoverflow.com/questions/6547658/how-to-remove-u-from-sqlite3-cursor-fetchall-in-python"""
+# SQLite Beginner Tutorial to understand the sqlite code:
+""" [2] http://zetcode.com/db/sqlitepythontutorial/"""
 
 import csv, sqlite3
  
@@ -25,7 +25,7 @@ with con:
     cur.execute("DROP TABLE IF EXISTS users") #This drops the table if it exists, it has to be here for running this file more than once, you don't want to add the users table to the DB multiple times. 
     cur.execute("CREATE TABLE users (emailAddress, name, department, departmentAdminPriv, password);")
 
-    with open('userData.csv','rb') as fin: # `with` statement available in 2.5+
+    with open('userData.csv','r') as fin: # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin) # comma is default delimiter
         to_db = [(i['emailAddress'], i['name'], i['department'], i['departmentAdminPriv'], i['password']) for i in dr]
@@ -46,8 +46,8 @@ with con:
         if row[x][3] == '1':
             listOfAdmins = listOfAdmins + row[x][1] + " "
 
-    print listOfEmails
-    print listOfNames
-    print listOfDepartments
-    print "The name of the user(s) with admin privileges is: " + listOfAdmins
+    print (listOfEmails)
+    print (listOfNames)
+    print (listOfDepartments)
+    print ("The name of the user(s) with admin privileges is: " + listOfAdmins)
 
