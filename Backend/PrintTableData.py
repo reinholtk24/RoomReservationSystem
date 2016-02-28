@@ -14,7 +14,7 @@ with con:
     data = cur.fetchall()
     
     for d in data:
-        print d[0], d[1], d[2]
+        print(d[0], d[1], d[2])
 
 
     print("rooms") 
@@ -23,7 +23,7 @@ with con:
     data = cur.fetchall()
     
     for d in data:
-        print d[0], d[1], d[2]
+        print(d[0], d[1], d[2])
 
     print("building")
     cur.execute('PRAGMA table_info(buildings)')
@@ -31,7 +31,7 @@ with con:
     data = cur.fetchall()
     
     for d in data:
-        print d[0], d[1], d[2]
+        print(d[0], d[1], d[2])
 
     print("users") 
     cur.execute('PRAGMA table_info(users)')
@@ -39,4 +39,4 @@ with con:
     data = cur.fetchall()
     
     for d in data:
-        print d[0], d[1], d[2]
+        print(d[0], d[1], d[2])
