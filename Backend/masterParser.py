@@ -19,9 +19,9 @@ def masterParser( CSVFile ):
 
     if( CSVFile == "users.csv" ):
 
-        rowsInUsersDataCSV = []
+        rowsInUsersDataCSV = [] #Stores each row from the csv file in a string. 
         NUMBEROFCOLUMNSINTABLE = 6
-        colsInCurrentRow = []
+        colsInCurrentRow = [] #Stores each column in the current row, each location contains a string 
         
         with open('users.csv', 'r') as usersData:
 
@@ -132,14 +132,17 @@ def masterParser( CSVFile ):
                         timeVerified = True
                     else:
                         print("Invalid time format on line " + str(y))
-                   #if(roomExist(room_number, building_code)):
-                    #    print("the room exist") """ 
-                        # roomVerified = True add it to final if statement
+                    if(roomExist(room_number, building_code)):
+                        print("the room exist")
+                        roomVerified = True
+		    else: 
+			print("The room on line" + str(y) + " is invalid.") 
+
                     splitStartDate = start_date.split('/')
                     splitEndDate = end_date.split('/')
                     if (len(splitStartDate) == 3 and len(splitEndDate) == 3):
                         dateVerified = True
-                    if (daysVerified and timeVerified and dateVerified):
+                    if (daysVerified and timeVerified and dateVerified and roomVerified):
                         con = lite.connect('RRSDB.db')
 
                         with con:
@@ -150,7 +153,9 @@ def masterParser( CSVFile ):
 
                         print("Row " + str(y) + " has been added to the database.")
 
-                    
+		    else: 
+			
+			print("There was an error in row " + str(y))                     
                     
                        
                        
