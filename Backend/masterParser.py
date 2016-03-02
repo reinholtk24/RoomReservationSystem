@@ -1,6 +1,11 @@
+################################################################################
+#Please note, we need to simplify the masterParser, we don't need to open the  #
+#database based on which csv file we want to parse and add to the database.    #
+################################################################################
+
 import sqlite3 as lite
 import sys
-
+import csv #need this for the csv reader method!
 
 def roomExist(roomNumber, BLDCode):
     room = roomNumber + ','
@@ -82,11 +87,95 @@ def masterParser( CSVFile ):
                     print ("The user has input a comma in row " + str(x) + " .")
 
                     
-        
+#Denny and Trevor's parsers ####################################################        
     elif( CSVFile == "buildings.csv" ):
-        print( "update building elif" )
+        #this parser will read in buildings.csv, validate data and store the csv
+        #in a list of lists
+        sqlite_dbname = 'RRSDB.db'
+        NUMBEROFCOLUMNSINBUILDINGTABLE = 8 #global constant
+        buildings = [] #buildings will be a list of lists
+        with open('buildings.csv', newline = '') as buildingsfile:
+            rowCount = 1
+            temp = csv.reader(buildingsfile, delimiter = ',', quotechar='"')
+            for row in temp:
+                #check to make sure row has 8 fields
+                if len(row) != NUMBEROFCOLUMNSINBUILDINGTABLE:
+                    print("Error, row ",rowCount," does not have 8 column entries!")
+                    break
+                #check to make sure building name building_code are not empty
+                if row[0] == "" or row[1] == "":
+                    print("Row error on row ",rowCount, " building name or building_code is empty!")
+                    break
+                #check for valid times 0<= time <=2400
+                for colValue in range(2,8):
+                    if int(row[colValue]) not in range(0,2401):
+                        print("Row error on row ",colValue, " time is not in range 0 to 2400!")
+                        break
+                    else:
+                        row[colValue] = int(row[colValue]) #convert time to INTEGER
+                rowCount += 1
+                buildings.append(row)
+
+        #write list of lists to DB
+        #connect to DB
+        conn = lite.connect(sqlite_dbname)
+        cur = conn.cursor()
+        for building in buildings:
+            #check to make sure data doesn't exit in table
+            #building[0] #building name
+            #split buildings into parts and store in each building table
+            cur.execute("INSERT INTO buildings VALUES(?,?,?,?,?,?,?,?)",building)
+        #commit changes and close
+        conn.commit()
+        conn.close()
+        
     elif( CSVFile == "rooms.csv" ):
-        print( "update rooms elif" )
+        #this parser will read in rooms.csv, validate the data and store the csv
+        #in a list of lists
+        sqlite_dbname = 'RRSDB.db'
+        NUMBEROFCOLUMNSINROOMSTABLE = 8 #global constant
+        rooms = [] #buildings will be a list of lists
+        with open('rooms.csv', newline = '') as roomsfile:
+            rowCount = 1
+            temp = csv.reader(roomsfile, delimiter = ',', quotechar='"')
+            for row in temp:
+                #check to make sure row has 8 fields
+                if len(row) != NUMBEROFCOLUMNSINROOMSTABLE:
+                    print("Error, row ",rowCount," does not have 8 column entries")
+                    break
+                #make sure building code and room number are not empty
+                elif row[0] == "" or row[1] == "":
+                    print("Row error on row ",rowCount, " building name or building_code is empty!")
+                    break
+                #check to make sure owner has "@" symbol and ends in '.edu'
+                elif '@' not in row[2]:
+                    print("Invalid email address in row ",rowCount)
+                    break
+                #check to make sure seats > 0
+                elif int(row[3]) <= 0:
+                    print("Invalid number of seats in row ",rowCount)
+                    break
+                #check to make sure technology has 1 for True, otherwise put 0
+                for i in range(4,8):
+                    if int(row[i]) == 1:
+                        row[i] = int(row[i])
+                    else:
+                        row[i] = 0
+                rowCount += 1
+                rooms.append(row)
+
+        #write list of lists to DB
+        #connect to DB
+        conn = lite.connect(sqlite_dbname)
+        cur = conn.cursor()
+        for room in rooms:
+            #split rooms into room and store each in rooms table
+            cur.execute("INSERT INTO rooms VALUES(?,?,?,?,?,?,?,?)",room)
+        #commit changes and close
+        conn.commit()
+        conn.close()            
+        
+#End Denny and Trevor's parsers ################################################
     elif( CSVFile == "room_status.csv" ):
         
         rowsInUsersDataCSV = []
@@ -166,7 +255,7 @@ def masterParser( CSVFile ):
 
 
 
-masterParser("room_status.csv")        
+#masterParser("room_status.csv")        
 
 
 
