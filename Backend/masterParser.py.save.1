@@ -8,7 +8,6 @@ import sys
 import csv #need this for the csv reader method! # I think there are too many comments
 
 def roomExist(roomNumber, BLDCode):
-    print(roomNumber + " and " + BLDCode )
     room = roomNumber + ','
     con = lite.connect('RRSDB.db')
     with con:
@@ -221,12 +220,10 @@ def masterParser( CSVFile ):
                         daysVerified = True
                     else:
                         print("Invalid day format on line " + str(y))
-
                     if ((int(start_time) > 0 and int(start_time) < 2401) and (int(end_time) > 0 and int(end_time) < 2401)):
                         timeVerified = True
                     else:
                         print("Invalid time format on line " + str(y))
-                    
                     if(roomExist(room_number, building_code)):
                         print("the room exist")
                         roomVerified = True
@@ -236,12 +233,8 @@ def masterParser( CSVFile ):
                     splitStartDate = start_date.split('/')
                     splitEndDate = end_date.split('/')
                     if (len(splitStartDate) == 3 and len(splitEndDate) == 3):
-                        dateVerified = True
-                    else: 
-                        print("The date on line " + str(y) + " is invalid.")
-
+                        dateVerified 
                     if (daysVerified and timeVerified and dateVerified and roomVerified):
-
                         con = lite.connect('RRSDB.db')
 
                         with con:
@@ -254,7 +247,7 @@ def masterParser( CSVFile ):
 
                     else: 
             
-                        print("There was an error in row " + str(y) + " The information could not be added to the database.")                     
+                        print("There was an error in row " + str(y) + "The information could not be added to the database.")                     
                     
                        
                        

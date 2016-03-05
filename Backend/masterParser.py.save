@@ -5,24 +5,20 @@
 
 import sqlite3 as lite
 import sys
-import csv #need this for the csv reader method! # I think there are too many comments
+import csv #need this for the csv reader method!
 
 def roomExist(roomNumber, BLDCode):
-    print(roomNumber + " and " + BLDCode )
     room = roomNumber + ','
     con = lite.connect('RRSDB.db')
     with con:
         cur = con.cursor()
         cur.execute("SELECT * FROM rooms WHERE room_number ='" + roomNumber + "' AND building_code ='" + BLDCode + "'")
         roomFound = cur.fetchone()
-
-    if(roomFound == None):
+    if (roomFound == None):
         return False
     else:
-        Blah = []
-        blah = roomFound
-        print(roomFound)
         return True
+
 
 def masterParser( CSVFile ):
 
@@ -174,7 +170,7 @@ def masterParser( CSVFile ):
         cur = conn.cursor()
         for room in rooms:
             #split rooms into room and store each in rooms table
-            cur.execute("INSERT OR REPLACE INTO rooms VALUES(?,?,?,?,?,?,?,?)",room)
+            cur.execute("INSERT INTO rooms VALUES(?,?,?,?,?,?,?,?)",room)
         #commit changes and close
         conn.commit()
         conn.close()            
@@ -221,27 +217,20 @@ def masterParser( CSVFile ):
                         daysVerified = True
                     else:
                         print("Invalid day format on line " + str(y))
-
                     if ((int(start_time) > 0 and int(start_time) < 2401) and (int(end_time) > 0 and int(end_time) < 2401)):
                         timeVerified = True
                     else:
                         print("Invalid time format on line " + str(y))
-                    
                     if(roomExist(room_number, building_code)):
                         print("the room exist")
-                        roomVerified = True
-                    else: 
-                        print("The room on line" + str(y) + " is invalid.") 
+                        roomVerified = True		    else: 
+			print("The room on line" + str(y) + " is invalid.") 
 
                     splitStartDate = start_date.split('/')
                     splitEndDate = end_date.split('/')
                     if (len(splitStartDate) == 3 and len(splitEndDate) == 3):
                         dateVerified = True
-                    else: 
-                        print("The date on line " + str(y) + " is invalid.")
-
                     if (daysVerified and timeVerified and dateVerified and roomVerified):
-
                         con = lite.connect('RRSDB.db')
 
                         with con:
@@ -252,9 +241,9 @@ def masterParser( CSVFile ):
 
                         print("Row " + str(y) + " has been added to the database.")
 
-                    else: 
-            
-                        print("There was an error in row " + str(y) + " The information could not be added to the database.")                     
+		    else: 
+			
+			print("There was an error in row " + str(y))                     
                     
                        
                        
