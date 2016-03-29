@@ -1,0 +1,4 @@
+C:\Users\User\Documents\Projects\HelloWorld\HelloWorld\bin\HelloWorld.dll
+C:\Users\User\Documents\Projects\HelloWorld\HelloWorld\bin\HelloWorld.pdb
+C:\Users\User\Documents\Projects\HelloWorld\HelloWorld\obj\Debug\HelloWorld.dll
+C:\Users\User\Documents\Projects\HelloWorld\HelloWorld\obj\Debug\HelloWorld.pdb
