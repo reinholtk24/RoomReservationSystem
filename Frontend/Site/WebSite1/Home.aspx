@@ -15,7 +15,8 @@
         </asp:GridView>
     </h2>
     <p>
-        <asp:Button align="center" ID="selectRoom" runat="server" Height="37px" Width="260px" OnClick="selectRoom_Click" Text="Confirm Selection" Visible="False"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button align="center" ID="selectRoom" runat="server" Height="37px" Width="260px" OnClick="selectRoom_Click" Text="Confirm Selection" Visible="False" PostBackUrl="~/Account/Login.aspx"/>
     </p>
     <h2 id="buildingHeader">
         <asp:Label ID="Label1" runat="server" Text="Building"></asp:Label>
@@ -43,8 +44,7 @@
         <asp:Button ID="viewButton" runat="server" Height="37px" OnClick="Button1_Click1" Text="View Rooms" Width="185px" Visible="False" />
     </h2>
     <h2>
-        <asp:Label ID="testLabel" runat="server" Text="Label" Visible="False"></asp:Label>
-    </h2>
+        &nbsp;</h2>
     <h2>
         <asp:SqlDataSource ID="buildings" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [buildings]" OnSelecting="buildings_Selecting" ></asp:SqlDataSource>
         <asp:SqlDataSource ID="room_status" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" OnSelecting="room_status_Selecting" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [room_status]"></asp:SqlDataSource>

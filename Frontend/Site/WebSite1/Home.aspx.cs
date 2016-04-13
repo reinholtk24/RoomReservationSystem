@@ -476,12 +476,6 @@ public partial class Home : Page
         timeDropDownList.Visible = false;
         viewButton.Visible = false;
 
-
-        selectRoom.Visible = true;
-
-
-        
-
         avialable = new DataTable();
         DataColumn column;
         DataRow row;
@@ -589,21 +583,19 @@ public partial class Home : Page
     }
     protected void selectRoom_Click(object sender, EventArgs e)
     {
-      
+        
     }
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        testLabel.Text = roomsGridView.Rows.Count.ToString();
         roomsGridView.Visible = true;
+        selectRoom.Visible = true;
         getRow(); 
     }
 
     private void getRow()
     {
         roomsGridView.Visible = true;
-        //testLabel.Text = roomsGridView.SelectedIndex.ToString();
-        testLabel.Visible = true;
         System.Diagnostics.Debug.WriteLine("Number of rows in data grid");
         System.Diagnostics.Debug.WriteLine(roomsGridView.Rows.Count);
         System.Diagnostics.Debug.WriteLine(roomsGridView.SelectedIndex.ToString());
