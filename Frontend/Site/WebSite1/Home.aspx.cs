@@ -274,13 +274,17 @@ public partial class Home : Page
         string[] timeInterval = timesRequested.Split(' ');
         //timeInterval is the is an array that will hold 5 items which is the interval of time the user selected. Example: [0] -> 8:00 [1] -> pm [2] -> - [3] -> 9:00 [4] -> pm 
         int startTime = getStartTime(timeInterval[0], timeInterval[1]); //getStartTime takes the start time example 8:00 PM  timeInterval[0] contains the number and timeInterval[1] contains AM or PM
+        Session["startTime"] = startTime; 
         int hourInMilitaryTime = 100; 
         int endTime = startTime + hourInMilitaryTime; // We can get the endTime by adding an hour onto the start_time because the user can only reserve a room for an interval of 1 hour. 
-        
+        Session["endTime"] = endTime; 
+
         string usr_day = dateCalendar.SelectedDate.DayOfWeek.ToString();
         string selectedDate = dateCalendar.SelectedDate.ToString();
         string[] dateNTime = selectedDate.Split(' ');
-        string usr_date = dateNTime[0]; 
+        string usr_date = dateNTime[0];
+        System.Diagnostics.Debug.WriteLine("Date in vs date format: ", usr_date);
+        Session["date"] = usr_date; 
         string usr_day_code = getDayCode(usr_day); 
 
         DataView totalRooms = generateRoomsQuery(buildingCode); //This generates the initial query to display to the user
@@ -298,8 +302,7 @@ public partial class Home : Page
         /*
         //////////////////////////////////////////////TEST PRINT for all clasesInRooms in user selected building
         int num = firstPassRooms.Table.Rows.Count;
-
-        for (int i = 0; i < num; i++)
+for (int i = 0; i < num; i++)
         {
             for (int j = 0; j < 8; j++)
             {
@@ -308,7 +311,8 @@ public partial class Home : Page
             }
 
             System.Diagnostics.Debug.WriteLine(" ");
-        }//////////////////////////////////////////////END TEST PRINT
+        }
+        //////////////////////////////////////////////END TEST PRINT
         */
     }
 
@@ -551,7 +555,7 @@ public partial class Home : Page
             avialable.Rows.Add(row);
         }
 
-
+        GlobalVars.roomsAvailable = listOfRoomsAvailable; 
 
 
         GlobalVars.GlobalInt = 90;
@@ -597,7 +601,15 @@ public partial class Home : Page
     {
         roomsGridView.Visible = true;
         System.Diagnostics.Debug.WriteLine("Number of rows in data grid");
+        Session["roomSelected"] = roomsGridView.SelectedIndex.ToString(); 
         System.Diagnostics.Debug.WriteLine(roomsGridView.Rows.Count);
         System.Diagnostics.Debug.WriteLine(roomsGridView.SelectedIndex.ToString());
+        System.Diagnostics.Debug.WriteLine("Selected Row: " ); 
+        System.Diagnostics.Debug.WriteLine(GlobalVars.roomsAvailable.Table.Rows[roomsGridView.SelectedIndex][2]);
+        Session["buildingCode"] = GlobalVars.roomsAvailable.Table.Rows[roomsGridView.SelectedIndex][0]; 
+        Session["roomNumber"] = GlobalVars.roomsAvailable.Table.Rows[roomsGridView.SelectedIndex][1]; 
+        Session["owner"] = GlobalVars.roomsAvailable.Table.Rows[roomsGridView.SelectedIndex][2];
+        Session["numberOfSeats"] = GlobalVars.roomsAvailable.Table.Rows[roomsGridView.SelectedIndex][3]; 
+        
     }
 }

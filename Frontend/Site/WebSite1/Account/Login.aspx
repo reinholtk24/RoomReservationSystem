@@ -54,6 +54,7 @@
 
         <div class="col-md-4">
             <section id="socialLoginForm">
+                <asp:SqlDataSource ID="usersTable" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [users]"></asp:SqlDataSource>
                 <uc:openauthproviders runat="server" id="OpenAuthLogin" />
             </section>
         </div>
