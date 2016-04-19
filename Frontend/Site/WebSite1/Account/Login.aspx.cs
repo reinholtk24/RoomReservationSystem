@@ -25,9 +25,9 @@ public partial class Account_Login : Page
             System.Diagnostics.Debug.WriteLine("Room selected index after login.");
             System.Diagnostics.Debug.WriteLine(Session["roomSelected"]);
             System.Diagnostics.Debug.WriteLine(Session["buildingCode"]);
-            System.Diagnostics.Debug.WriteLine(Session["roomN"]);
-            System.Diagnostics.Debug.WriteLine(Session["numbeumber"]);
-            System.Diagnostics.Debug.WriteLine(Session["ownerrOfSeats"]);
+            System.Diagnostics.Debug.WriteLine(Session["roomNumber"]);
+            System.Diagnostics.Debug.WriteLine(Session["owner"]);
+            System.Diagnostics.Debug.WriteLine(Session["numberOfSeats"]);
             System.Diagnostics.Debug.WriteLine(Session["startTime"]);
             System.Diagnostics.Debug.WriteLine(Session["endTime"]);
             System.Diagnostics.Debug.WriteLine(Session["date"]);
@@ -47,6 +47,7 @@ public partial class Account_Login : Page
                 System.Diagnostics.Debug.WriteLine(Session["userId"]);
                 System.Diagnostics.Debug.WriteLine(Session["userEmail"]);
 
+                Server.Transfer("ViewRooms.aspx", true); 
                 /*
                 for (int i = 0; i < 1; i++)
                 {
@@ -62,6 +63,7 @@ public partial class Account_Login : Page
             catch
             {
                 System.Diagnostics.Debug.WriteLine("Wrong username or password exception caught.");
+                userPassErrorLabel.Visible = true; 
             }
 
       
