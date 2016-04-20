@@ -71,8 +71,8 @@ Edit that line to look like this: directoryBrowse enabled = true
 
 These are the most relevant files from the front end:    
 
-- [Home.aspx](#home.aspx)
-- [Home.aspx.cs](#home.aspx.cs) 
+- [Home.aspx](home.aspx)
+- [Home.aspx.cs](home.aspx.cs) 
 - Account/Login.aspx
 - Account/Login.aspx.cs
 - Account/ViewRooms.aspx
@@ -81,21 +81,21 @@ These are the most relevant files from the front end:
 #Home.aspx
 
 This file contains the layout for the homepage. Keep in mind that this site is intended for integration with an existing system.     
-There is not any navigation, or explanations about the website on this page. It is a user interface intended for the user to select a building,     
+There is not any navigation, or explanations about the website on this page. It is a user interface intended for the user to select a building,
 date, and time so that the a list of availble rooms from that institution may be populated and presented to the user.    
 
 TODO: Finish this list with the correct identifiers     
 This file consists of the following Web Objects:     
-1. Sqlite Data Connection 
-2. Rooms Available GridView 
-3. Date Calendar 
-4. button1
-5. button2 
-6. Label errorLabel
-7. Label2
-8. Label3 
-9. roomSelected Button
-
+1. Sqlite Data Connection      
+2. Rooms Available GridView      
+3. Date Calendar      
+4. button1     
+5. button2      
+6. Label errorLabel     
+7. Label2     
+8. Label3    
+9. roomSelected Button     
+   
 #Home.aspx.cs
 
 
