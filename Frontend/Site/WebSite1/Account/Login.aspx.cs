@@ -34,20 +34,33 @@ public partial class Account_Login : Page
             System.Diagnostics.Debug.WriteLine(UserName.Text);
             System.Diagnostics.Debug.WriteLine(Password.Text);
 
-            usersTable.SelectCommand = "SELECT * FROM [users] WHERE (university_email = \"" + UserName.Text + "\") and (password = \"" + Password.Text + "\")"; 
+            usersTable.SelectParameters.Add("university_email", UserName.Text); 
+
+            usersTable.SelectCommand = "SELECT * FROM [users] WHERE (university_email = \"" + UserName.Text + "\") and (password = \"" + Password.Text + "\")";
+            //usersTable.SelectParameters["university_email"].DefaultValue = UserName.Text;
+            //usersTable.SelectParameters["password"].DefaultValue = Password.Text; 
             usersTable.DataBind();
-            DataView currentUser = null; 
+            DataView currentUser = null;
+           
             try
             {
                 currentUser = (DataView)usersTable.Select(DataSourceSelectArguments.Empty);
 
-                Session["userEmail"] = currentUser.Table.Rows[0][0]; 
-                Session["userId"] = currentUser.Table.Rows[0][6]; 
-
+                System.Diagnostics.Debug.WriteLine(currentUser.Table.Rows.Count);
+                System.Diagnostics.Debug.WriteLine(currentUser.Table.Rows[0][6]);
+                Session["userEmail"] = currentUser.Table.Rows[0][0];
+                Session["firstName"] = currentUser.Table.Rows[0][1];
+                Session["lastName"] = currentUser.Table.Rows[0][2]; 
+                Session["admin"] = currentUser.Table.Rows[0][5]; 
+                Session["userId"] = currentUser.Table.Rows[0][6];
+                
                 System.Diagnostics.Debug.WriteLine(Session["userId"]);
                 System.Diagnostics.Debug.WriteLine(Session["userEmail"]);
+                System.Diagnostics.Debug.WriteLine("Checking if admin priviledges is 1 or not!!!");
+                System.Diagnostics.Debug.WriteLine(Session["admin"]);
 
                 Server.Transfer("ViewRooms.aspx", true); 
+
                 /*
                 for (int i = 0; i < 1; i++)
                 {
