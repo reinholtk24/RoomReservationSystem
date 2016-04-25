@@ -26,6 +26,7 @@ public partial class Home : Page
     }
 
     public DataSet dataset2;
+   
     public static class GlobalVars
     {
         public static int GlobalInt = 256;
@@ -46,7 +47,17 @@ public partial class Home : Page
 
     protected void dateCalendar_SelectionChanged(object sender, EventArgs e)
     {       
-        dateSelected();
+        if(dateCalendar.SelectedDate < dateCalendar.TodaysDate)
+        {
+            dateErrorLabel.Visible = true;
+        }
+        else
+        {
+            dateErrorLabel.Visible = false;
+            dateSelected();
+        }
+     
+        
     }
 
     protected void timeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,7 +111,6 @@ public partial class Home : Page
         const int sat_close_time_index =5;
         const int sun_open_time_index =6;
         const int sun_close_time_index =7;
-
 
         buildings.SelectCommand = "SELECT * FROM [buildings]"; //stores command
         buildings.DataBind();
@@ -467,7 +477,10 @@ for (int i = 0; i < num; i++)
     }
 
 
-    //private DataView checkIfReserved(DataView roomList)
+    /*private DataView checkIfReserved(DataView roomList)
+    {
+
+    }*/
 
     protected void displayRoomsAvailableToUser(DataView listOfRoomsAvailable)
     {
@@ -489,6 +502,7 @@ for (int i = 0; i < num; i++)
 
         //roomsGridView.DataBind();
 
+        /*
         column = new DataColumn();
         column.DataType = System.Type.GetType("System.Int32");
         column.ColumnName = "id";
@@ -496,6 +510,8 @@ for (int i = 0; i < num; i++)
         column.Unique = true;
         // Add the Column to the DataColumnCollection.
         avialable.Columns.Add(column);
+        */
+
 
         column = new DataColumn();
         column.DataType = System.Type.GetType("System.String");
@@ -532,11 +548,11 @@ for (int i = 0; i < num; i++)
         column.ReadOnly = false;
         column.Unique = false;
         avialable.Columns.Add(column); // Add the column to the table.
-
+        /*
         DataColumn[] PrimaryKeyColumns = new DataColumn[1];
         PrimaryKeyColumns[0] = avialable.Columns["id"];
         avialable.PrimaryKey = PrimaryKeyColumns;
-
+        */
         // Instantiate the DataSet variable.
 
         dataset2 = new DataSet();
@@ -547,7 +563,6 @@ for (int i = 0; i < num; i++)
         for (int i = 0; i < listOfRoomsAvailable.Table.Rows.Count; i++)
         {
             row = avialable.NewRow();
-            row["id"] = i;
             row["Building Code"] = listOfRoomsAvailable.Table.Rows[i][0];
             row["Room Number"] = listOfRoomsAvailable.Table.Rows[i][1];
             row["Owner"] = listOfRoomsAvailable.Table.Rows[i][2];
