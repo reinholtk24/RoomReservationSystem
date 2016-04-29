@@ -50,6 +50,7 @@ Contains 4 tables right now (this may change with time):
 
 For table data definitions, refer to this:    
 [Table Formats](https://docs.google.com/document/d/1TuH4QXDVmixivNLMd0GYS0jrRGVwHpqipmDEyQk-xdA/edit?usp=sharing)    
+[ER-Model](https://docs.google.com/document/d/1WUespPPC7Xdgn-7NbcA1Erd0Y627aoqP_rCsXExPpnA/edit?pref=2&pli=1)
 
 room_status.csv and users.csv are used as example files for the masterParser.py 
 
@@ -71,8 +72,8 @@ Edit that line to look like this: directoryBrowse enabled = true
 
 These are the most relevant files from the front end:    
 
-- [Home.aspx](home.aspx)
-- [Home.aspx.cs](home.aspx.cs) 
+- [Home.aspx](#Home.aspx)
+- [Home.aspx.cs](#Home.aspx.cs) 
 - Account/Login.aspx
 - Account/Login.aspx.cs
 - Account/ViewRooms.aspx
@@ -98,7 +99,8 @@ This file consists of the following Web Objects:
    
 #Home.aspx.cs
 
-
+The documentation can be found [here](https://docs.google.com/document/d/1aPTLqmRvrRfCIpIRCFBxSbD_gB8UD-1lW0luMyJS6NE/edit?pref=2&pli=1)
+The file can be found [here](https://github.com/reinholtk24/RoomReservationSystem/blob/clean/Frontend/Site/WebSite1/Home.aspx.cs)
 
 #Account/Login.aspx
 
