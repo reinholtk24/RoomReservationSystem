@@ -72,8 +72,8 @@ Edit that line to look like this: directoryBrowse enabled = true
 
 These are the most relevant files from the front end:    
 
-- [Home.aspx](#home.aspx)
-- [Home.aspx.cs](#home.aspx.cs) 
+- [Home.aspx](#Home.aspx)
+- [Home.aspx.cs](#Home.aspx.cs) 
 - Account/Login.aspx
 - Account/Login.aspx.cs
 - Account/ViewRooms.aspx
@@ -98,6 +98,9 @@ This file consists of the following Web Objects:
 9. roomSelected Button     
    
 #Home.aspx.cs
+
+The documentation can be found [here](https://github.com/reinholtk24/RoomReservationSystem.git)
+The file can be found [here](https://github.com/reinholtk24/RoomReservationSystem/blob/clean/Frontend/Site/WebSite1/Home.aspx.cs)
 
 #Account/Login.aspx
 
