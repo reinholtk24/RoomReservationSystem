@@ -11,13 +11,7 @@ public partial class Account_Login : Page
 {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            }
+           
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -59,7 +53,15 @@ public partial class Account_Login : Page
                 System.Diagnostics.Debug.WriteLine("Checking if admin priviledges is 1 or not!!!");
                 System.Diagnostics.Debug.WriteLine(Session["admin"]);
 
-                Server.Transfer("ViewRooms.aspx", true); 
+                try 
+                {
+                    Server.Transfer("ViewRooms.aspx", true); 
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("The login page did not load properly."); 
+                }
+                 
 
                 /*
                 for (int i = 0; i < 1; i++)

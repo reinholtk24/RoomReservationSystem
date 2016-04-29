@@ -1634,6 +1634,8 @@ pre code {
 }
 .col-xs-10 {
   width: 83.33333333%;
+    top: -31px;
+    left: 78px;
 }
 .col-xs-9 {
   width: 75%;
@@ -3520,6 +3522,8 @@ tbody.collapse.in {
 .dropup,
 .dropdown {
   position: relative;
+    top: 1px;
+    left: -14px;
 }
 .dropdown-toggle:focus {
   outline: 0;

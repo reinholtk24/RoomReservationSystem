@@ -17,14 +17,19 @@ public partial class ViewRooms : Page
         roomsReservedTableLable.Text = "Hello " + usersFirstName.Table.Rows[0][0].ToString() + "! Here is Your Room Status Table: ";
         roomsReservedTableLable.Visible = true; 
 
-        foreach(GridViewRow gridRow in reserverdGridView.Rows)
+        foreach(GridViewRow gridRow in reservedGridView.Rows)
         {
-            for (int i = 0; i < reserverdGridView.Columns.Count; i++)
+            for (int i = 0; i < reservedGridView.Columns.Count; i++)
             {
-                if (gridRow.Cells[0].Text.Contains("0"))
+                if (gridRow.Cells[1].Text.Contains("0"))
                 {
-                    gridRow.Cells[0].Text = gridRow.Cells[0].Text.Replace(@"0", "pending");
-                    gridRow.Cells[0].ForeColor = System.Drawing.Color.CornflowerBlue; 
+                    gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"0", "pending");
+                    gridRow.Cells[1].ForeColor = System.Drawing.Color.CornflowerBlue; 
+                }
+                else if (gridRow.Cells[1].Text.Contains("-1"))
+                {
+                    gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"-1", "denied");
+                    gridRow.Cells[1].ForeColor = System.Drawing.Color.Red;
                 }
             }
         }
@@ -43,6 +48,11 @@ public partial class ViewRooms : Page
                     {
                         gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"0", "pending");
                         gridRow.Cells[2].ForeColor = System.Drawing.Color.CornflowerBlue;
+                    }
+                    else if (gridRow.Cells[2].Text.Contains("-1"))
+                    {
+                        gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"-1", "denied");
+                        gridRow.Cells[2].ForeColor = System.Drawing.Color.Red;
                     }
                 }
             }
@@ -100,6 +110,16 @@ public partial class ViewRooms : Page
         }
 
     }
+
+    protected void reservedGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if(e.CommandName == "roomSelected")
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            reservedGridView.SelectedIndex = index;
+            
+        }
+    }
     protected void adminGridView_RowCommand(object sender, GridViewCommandEventArgs e)
     {
 
@@ -122,9 +142,9 @@ public partial class ViewRooms : Page
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[0].Text);
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[1].Text);
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[2].Text);
-            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[3].Text);
-            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[4].Text);
-            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[5].Text);
+            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
+            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
+            System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
 
         }
 
@@ -158,5 +178,44 @@ public partial class ViewRooms : Page
         string item = adminGridView.Rows[adminGridView.SelectedIndex].Cells[0].Text; 
         System.Diagnostics.Debug.WriteLine(item); 
     }
-   
+
+    protected void reservedGridView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        System.Diagnostics.Debug.WriteLine(reservedGridView.SelectedIndex.ToString()); 
+
+    }
+
+    protected void newRoomBtn_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("../Home.aspx", true); 
+    }
+
+    protected void unReserveBtn_Click1(object sender, EventArgs e)
+    {
+        if (reservedGridView.SelectedIndex == -1)
+        {
+            selectRoomError.Visible = true;
+        }
+        else
+        {
+            selectRoomError.Visible = false;
+
+            int myindex = Convert.ToInt32(reservedGridView.SelectedIndex);
+            GridViewRow Row = reservedGridView.Rows[myindex];
+            System.Diagnostics.Debug.WriteLine("Second Attempt: ");
+            System.Diagnostics.Debug.WriteLine(Row.Cells[0].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[1].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[2].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[3].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[4].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[5].Text);
+            System.Diagnostics.Debug.WriteLine(Row.Cells[6].Text);
+            int reservationID = Convert.ToInt32(Row.Cells[7].Text);
+
+            Session["reservationID"] = reservationID;
+
+           
+        }
+    }
 }

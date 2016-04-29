@@ -280,6 +280,7 @@ public partial class Home : Page
     protected void viewRooms()
     {
         string buildingCode = getBuildingCode(buildingDropDownList.SelectedItem.ToString());
+        Session["bldCode"] = buildingCode; 
         string timesRequested = timeDropDownList.SelectedItem.ToString();
         string[] timeInterval = timesRequested.Split(' ');
         //timeInterval is the is an array that will hold 5 items which is the interval of time the user selected. Example: [0] -> 8:00 [1] -> pm [2] -> - [3] -> 9:00 [4] -> pm 
@@ -303,7 +304,7 @@ public partial class Home : Page
         
         DataView firstPassRooms = totalMinusClasses(totalRooms, classesInRooms);
 
-        //DataView roomsAvailable = checkIfReserved(firstPassRooms); 
+        DataView roomsAvailable = checkIfReserved(firstPassRooms); // Check building code start time and the date here 
 
         GlobalVars.roomsAvailable = firstPassRooms; 
 
@@ -406,6 +407,40 @@ for (int i = 0; i < num; i++)
         DataView roomsFromBuilding = (DataView)rooms.Select(DataSourceSelectArguments.Empty);
 
         return roomsFromBuilding;
+    }
+
+    private DataView checkIfReserved(DataView firstRoomsPass)
+    {
+        // Check building code start time and the date here 
+
+        DataView testView = (DataView)reservedData.Select(DataSourceSelectArguments.Empty);
+       
+        int allRowsCounter = firstRoomsPass.Table.Rows.Count;
+        int reservedCounter = testView.Table.Rows.Count;
+        List<int> rowsToRemove = new List<int>();
+
+        /*TODO
+         * INSERT FOR LOOP TO SUBTRACT RESERVED ROOMS FROM FIRST PASS
+        
+
+        
+        
+        //int numOfCols = 1; 
+        
+        ///TEST PRINT
+        /*
+        for (int i = 0; i < testView.Table.Rows.Count; i++)
+        {
+            for (int j = 0; j < numOfCols; j++)
+            {
+                System.Diagnostics.Debug.Write(testView.Table.Rows[i][j] + "  ");
+
+            }
+
+            System.Diagnostics.Debug.WriteLine(" ");
+        }*/
+
+            return testView; 
     }
 
     private string getDayCode(string usrDayOfWeek)
