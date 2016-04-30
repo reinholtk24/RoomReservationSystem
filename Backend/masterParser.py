@@ -143,12 +143,16 @@ def masterParser( CSVFile ):
             rowCount = 1
             temp = csv.reader(roomsfile, delimiter = ',', quotechar='"')
             for row in temp:
+                row[0] = row[0].strip()
+                row[1] = row[1].strip()
                 #check to make sure row has 8 fields
                 if len(row) != NUMBEROFCOLUMNSINROOMSTABLE:
                     print("Error, row ",rowCount," does not have 8 column entries")
                     break
                 #make sure building code and room number are not empty
                 elif row[0] == "" or row[1] == "":
+                    row[0] = row[0].strip()
+                    row[1] = row[1].strip()
                     print("Row error on row ",rowCount, " building name or building_code is empty!")
                     break
                 #check to make sure owner has "@" symbol and ends in '.edu'

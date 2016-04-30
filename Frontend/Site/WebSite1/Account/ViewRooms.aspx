@@ -24,6 +24,7 @@
                 <asp:BoundField DataField="building_code" HeaderText="Building Code" SortExpression="building_code" />
                 <asp:BoundField DataField="reservationID" HeaderText="reservationID" InsertVisible="False" ReadOnly="True" SortExpression="reservationID" />
             </Columns>
+            <SelectedRowStyle BackColor="#FF6600" />
         </asp:GridView>
     </h2>
     <h2>
@@ -72,7 +73,12 @@
             <SortedDescendingHeaderStyle BackColor="#00547E" />
         </asp:GridView>
     </h2>
-    <p>&nbsp;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="approveBtn" runat="server" CssClass="btn-success" Font-Size="X-Large" OnClick="approveBtn_Click" Text="Approve" Visible="False" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="denyBtn" runat="server" CssClass="btn-danger" Font-Size="X-Large" OnClick="denyBtn_Click" Text="Deny" Visible="False" />
+    </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
     <h2>
         <asp:SqlDataSource ID="reserved_rooms" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [rooms_reserved] WHERE [userId] = ?" InsertCommand="INSERT INTO [rooms_reserved] ([reservationID], [approved], [room_owner], [start_time], [end_time], [date], [room_number], [building_code], [userId], [user_first_name], [user_last_name]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [rooms_reserved]" UpdateCommand="UPDATE [rooms_reserved] SET [reservationID] = ?, [approved] = ?, [room_owner] = ?, [start_time] = ?, [end_time] = ?, [date] = ?, [room_number] = ?, [building_code] = ? WHERE [userId] = ?">
             <DeleteParameters>
@@ -113,10 +119,74 @@
                 <asp:SessionParameter Name="userId" SessionField="userId" Type="Int64" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <asp:SqlDataSource ID="unReserveRoom" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [rooms_reserved] WHERE [reservationID] = ?" InsertCommand="INSERT INTO [rooms_reserved] ([reservationID], [approved], [room_owner], [start_time], [end_time], [date], [room_number], [building_code], [userId], [user_first_name], [user_last_name]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [rooms_reserved] WHERE ([reservationID] = ?)" UpdateCommand="UPDATE [rooms_reserved] SET [approved] = ?, [room_owner] = ?, [start_time] = ?, [end_time] = ?, [date] = ?, [room_number] = ?, [building_code] = ?, [userId] = ?, [user_first_name] = ?, [user_last_name] = ? WHERE [reservationID] = ?">
+            <DeleteParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="reservationID" Type="Int64" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="reservationID" Type="Int64" />
+                <asp:Parameter Name="approved" Type="Int64" />
+                <asp:Parameter Name="room_owner" Type="String" />
+                <asp:Parameter Name="start_time" Type="Int64" />
+                <asp:Parameter Name="end_time" Type="Int64" />
+                <asp:Parameter Name="date" Type="String" />
+                <asp:Parameter Name="room_number" Type="String" />
+                <asp:Parameter Name="building_code" Type="String" />
+                <asp:Parameter Name="userId" Type="Int64" />
+                <asp:Parameter Name="user_first_name" Type="String" />
+                <asp:Parameter Name="user_last_name" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="reservationID" Type="Int64" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="approved" Type="Int64" />
+                <asp:Parameter Name="room_owner" Type="String" />
+                <asp:Parameter Name="start_time" Type="Int64" />
+                <asp:Parameter Name="end_time" Type="Int64" />
+                <asp:Parameter Name="date" Type="String" />
+                <asp:Parameter Name="room_number" Type="String" />
+                <asp:Parameter Name="building_code" Type="String" />
+                <asp:Parameter Name="userId" Type="Int64" />
+                <asp:Parameter Name="user_first_name" Type="String" />
+                <asp:Parameter Name="user_last_name" Type="String" />
+                <asp:Parameter Name="reservationID" Type="Int64" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
         <asp:SqlDataSource ID="admin_rooms" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [approved], [start_time], [end_time], [date], [room_number], [building_code], [user_first_name], [user_last_name], [reservationID] FROM [rooms_reserved] WHERE ([room_owner] = ?)">
             <SelectParameters>
                 <asp:SessionParameter Name="room_owner" SessionField="userEmail" Type="String" />
             </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="approved" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [rooms_reserved] WHERE [reservationID] = ?" InsertCommand="INSERT INTO [rooms_reserved] ([reservationID], [approved]) VALUES (?, ?)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [reservationID], [approved] FROM [rooms_reserved] WHERE ([reservationID] = ?)" UpdateCommand="UPDATE [rooms_reserved] SET [approved] = 1 WHERE [reservationID] = ?">
+            <DeleteParameters>
+                <asp:Parameter Name="reservationID" Type="Int64" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="reservationID" Type="Int64" />
+                <asp:Parameter Name="approved" Type="Int64" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="approvedIndex" Type="Int64" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="approvedIndex" Type="Int64" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="denied" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [rooms_reserved] WHERE [reservationID] = ?" InsertCommand="INSERT INTO [rooms_reserved] ([reservationID], [approved]) VALUES (?, ?)" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [reservationID], [approved] FROM [rooms_reserved] WHERE ([reservationID] = ?)" UpdateCommand="UPDATE [rooms_reserved] SET [approved] = -1 WHERE [reservationID] = ?">
+            <DeleteParameters>
+                <asp:Parameter Name="reservationID" Type="Int64" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="reservationID" Type="Int64" />
+                <asp:Parameter Name="approved" Type="Int64" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="deniedIndex" Type="Int64" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:SessionParameter Name="reservationID" SessionField="deniedIndex" Type="Int64" />
+            </UpdateParameters>
         </asp:SqlDataSource>
     </h2>
 

@@ -17,21 +17,49 @@ public partial class ViewRooms : Page
         roomsReservedTableLable.Text = "Hello " + usersFirstName.Table.Rows[0][0].ToString() + "! Here is Your Room Status Table: ";
         roomsReservedTableLable.Visible = true; 
 
+        GridView test = new GridView(); 
+
+        int gridRowIndex = 0; 
+
         foreach(GridViewRow gridRow in reservedGridView.Rows)
         {
-            for (int i = 0; i < reservedGridView.Columns.Count; i++)
+            string date = gridRow.Cells[4].Text + " 12:00:00.00";
+            DateTime dt = Convert.ToDateTime(date);
+            DateTime today =  DateTime.Today;
+            
+            if (dt < today)
             {
-                if (gridRow.Cells[1].Text.Contains("0"))
+                System.Diagnostics.Debug.WriteLine("Date should not be displayed");
+                System.Diagnostics.Debug.WriteLine(dt.ToString());
+                //do nothing
+                gridRow.Visible = false; 
+            }
+            else
+            {
+                for (int i = 0; i < reservedGridView.Columns.Count; i++)
                 {
-                    gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"0", "pending");
-                    gridRow.Cells[1].ForeColor = System.Drawing.Color.CornflowerBlue; 
-                }
-                else if (gridRow.Cells[1].Text.Contains("-1"))
-                {
-                    gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"-1", "denied");
-                    gridRow.Cells[1].ForeColor = System.Drawing.Color.Red;
+                    if (gridRow.Cells[1].Text.Contains("0"))
+                    {
+                        gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"0", "pending");
+                        gridRow.Cells[1].ForeColor = System.Drawing.Color.CornflowerBlue;
+                    }
+                    else if (gridRow.Cells[1].Text.Contains("-1"))
+                    {
+                        gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"-1", "denied");
+                        gridRow.Cells[1].ForeColor = System.Drawing.Color.Red;
+                    }
+                    else if (gridRow.Cells[1].Text.Contains("1"))
+                    {
+                        gridRow.Cells[1].Text = gridRow.Cells[1].Text.Replace(@"1", "approved");
+                        gridRow.Cells[1].ForeColor = System.Drawing.Color.LightGreen;
+                        gridRow.Cells[1].Font.Bold = true; 
+                    }
+
                 }
             }
+
+            gridRowIndex = gridRowIndex + 1; 
+            
         }
 
         if(Session["admin"].ToString() == "1")
@@ -42,17 +70,36 @@ public partial class ViewRooms : Page
             
             foreach (GridViewRow gridRow in adminGridView.Rows)
             {
-                for (int i = 0; i < adminGridView.Columns.Count; i++)
+                string date = gridRow.Cells[5].Text + " 12:00:00.00";
+                DateTime dt = Convert.ToDateTime(date);
+                DateTime today = DateTime.Today;
+
+                if (dt < today)
                 {
-                    if (gridRow.Cells[2].Text.Contains("0"))
+                    System.Diagnostics.Debug.WriteLine("Date should not be displayed");
+                    System.Diagnostics.Debug.WriteLine(dt.ToString());
+                    //do nothing
+                    gridRow.Visible = false;
+                }
+                else
+                {
+                    for (int i = 0; i < adminGridView.Columns.Count; i++)
                     {
-                        gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"0", "pending");
-                        gridRow.Cells[2].ForeColor = System.Drawing.Color.CornflowerBlue;
-                    }
-                    else if (gridRow.Cells[2].Text.Contains("-1"))
-                    {
-                        gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"-1", "denied");
-                        gridRow.Cells[2].ForeColor = System.Drawing.Color.Red;
+                        if (gridRow.Cells[2].Text.Contains("0"))
+                        {
+                            gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"0", "pending");
+                            gridRow.Cells[2].ForeColor = System.Drawing.Color.CornflowerBlue;
+                        }
+                        else if (gridRow.Cells[2].Text.Contains("-1"))
+                        {
+                            gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"-1", "denied");
+                            gridRow.Cells[2].ForeColor = System.Drawing.Color.Red;
+                        }
+                        else if (gridRow.Cells[2].Text.Contains("1"))
+                        {
+                            gridRow.Cells[2].Text = gridRow.Cells[2].Text.Replace(@"1", "approved");
+                            gridRow.Cells[2].ForeColor = System.Drawing.Color.Green;
+                        }
                     }
                 }
             }
@@ -144,7 +191,13 @@ public partial class ViewRooms : Page
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[2].Text);
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
+            System.Diagnostics.Debug.WriteLine("Admin Selected Index: "); 
             System.Diagnostics.Debug.WriteLine(selectedRow.Cells[10].Text);
+            int approvedIndex = Convert.ToInt32(selectedRow.Cells[10].Text); 
+
+            Session["approvedIndex"] = approvedIndex; 
+
+            approveBtn.Visible = true; 
 
         }
 
@@ -161,7 +214,11 @@ public partial class ViewRooms : Page
             // Get the last name of the selected author from the appropriate
             // cell in the GridView control.
             GridViewRow selectedRow = adminGridView.Rows[index];
+            int deniedIndex = Convert.ToInt32(selectedRow.Cells[10].Text); 
 
+            Session["deniedIndex"] = deniedIndex; 
+
+            denyBtn.Visible = true; 
         }
 
     }
@@ -182,7 +239,8 @@ public partial class ViewRooms : Page
     protected void reservedGridView_SelectedIndexChanged(object sender, EventArgs e)
     {
 
-        System.Diagnostics.Debug.WriteLine(reservedGridView.SelectedIndex.ToString()); 
+        System.Diagnostics.Debug.WriteLine(reservedGridView.SelectedIndex.ToString());
+       
 
     }
 
@@ -211,11 +269,29 @@ public partial class ViewRooms : Page
             System.Diagnostics.Debug.WriteLine(Row.Cells[4].Text);
             System.Diagnostics.Debug.WriteLine(Row.Cells[5].Text);
             System.Diagnostics.Debug.WriteLine(Row.Cells[6].Text);
+            //string reservationID = Row.Cells[7].Text;  
             int reservationID = Convert.ToInt32(Row.Cells[7].Text);
 
+            System.Diagnostics.Debug.WriteLine(reservationID);
+            
             Session["reservationID"] = reservationID;
-
+            System.Diagnostics.Debug.WriteLine(Session["reservationID"].ToString());
+            unReserveRoom.Delete();
+            unReserveRoom.DataBind();
+            Server.Transfer("ViewRooms.aspx", false); 
            
         }
+    }
+    protected void approveBtn_Click(object sender, EventArgs e)
+    {
+        approved.Update();
+        approveBtn.Visible = false;
+        Server.Transfer("ViewRooms.aspx", false); 
+    }
+    protected void denyBtn_Click(object sender, EventArgs e)
+    {
+        denied.Update(); 
+        denyBtn.Visible = false;
+        Server.Transfer("ViewRooms.aspx", false); 
     }
 }

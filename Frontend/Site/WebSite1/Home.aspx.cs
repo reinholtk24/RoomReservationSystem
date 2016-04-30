@@ -299,6 +299,19 @@ public partial class Home : Page
         string usr_day_code = getDayCode(usr_day); 
 
         DataView totalRooms = generateRoomsQuery(buildingCode); //This generates the initial query to display to the user
+        System.Diagnostics.Debug.WriteLine("Printing totalRooms Count"); 
+
+        int num = totalRooms.Table.Rows.Count;
+        for (int i = 0; i < num; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                System.Diagnostics.Debug.Write(totalRooms.Table.Rows[i][j] + "  ");
+
+            }
+
+            System.Diagnostics.Debug.WriteLine(" ");
+        }
 
         DataView classesInRooms = generateRoomStatusQuery(startTime, endTime, buildingCode, usr_day_code); //This query of classesInRooms will be removed from the total rooms query 
         
@@ -306,14 +319,16 @@ public partial class Home : Page
 
         DataView roomsAvailable = checkIfReserved(firstPassRooms); // Check building code start time and the date here 
 
-        GlobalVars.roomsAvailable = firstPassRooms; 
+        //GlobalVars.roomsAvailable = firstPassRooms; 
 
-        displayRoomsAvailableToUser(GlobalVars.roomsAvailable);
+        displayRoomsAvailableToUser(roomsAvailable);
 
         /*
         //////////////////////////////////////////////TEST PRINT for all clasesInRooms in user selected building
+        
+         
         int num = firstPassRooms.Table.Rows.Count;
-for (int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             for (int j = 0; j < 8; j++)
             {
@@ -322,7 +337,7 @@ for (int i = 0; i < num; i++)
             }
 
             System.Diagnostics.Debug.WriteLine(" ");
-        }
+        }/*
         //////////////////////////////////////////////END TEST PRINT
         */
     }
@@ -365,8 +380,16 @@ for (int i = 0; i < num; i++)
             }
             else
             {
-                returnStartTime = numValue + 1200;
-                System.Diagnostics.Debug.WriteLine(returnStartTime);
+                if(numValue == 1200)
+                {
+                    returnStartTime = 1200; 
+                }
+                else
+                {
+                    returnStartTime = numValue + 1200;
+                    System.Diagnostics.Debug.WriteLine(returnStartTime);
+                }
+             
             }
         }
         else
@@ -382,6 +405,7 @@ for (int i = 0; i < num; i++)
         string buildingCode = "";
 
         buildingsTwo.SelectCommand = "SELECT * FROM [buildings] WHERE (building = \"" + buildingName + "\")";
+        System.Diagnostics.Debug.WriteLine(buildingsTwo.SelectCommand.ToString()); 
         buildingsTwo.DataBind();
         DataView buildings = (DataView)buildingsTwo.Select(DataSourceSelectArguments.Empty);
 
@@ -393,6 +417,8 @@ for (int i = 0; i < num; i++)
     private DataView generateRoomsQuery(string usrBldCode)
     {
         rooms.SelectCommand = "SELECT * FROM [rooms] WHERE (building_code = \"" + usrBldCode + "\")";
+        System.Diagnostics.Debug.WriteLine("checking rooms query select command");
+        System.Diagnostics.Debug.WriteLine(rooms.SelectCommand.ToString()); 
         rooms.DataBind();
         DataView roomsFromBuilding = (DataView)rooms.Select(DataSourceSelectArguments.Empty);
 
@@ -413,34 +439,42 @@ for (int i = 0; i < num; i++)
     {
         // Check building code start time and the date here 
 
-        DataView testView = (DataView)reservedData.Select(DataSourceSelectArguments.Empty);
+        DataView reserved = (DataView)reservedData.Select(DataSourceSelectArguments.Empty);
        
         int allRowsCounter = firstRoomsPass.Table.Rows.Count;
-        int reservedCounter = testView.Table.Rows.Count;
+        int reservedCounter = reserved.Table.Rows.Count;
         List<int> rowsToRemove = new List<int>();
-
-        /*TODO
-         * INSERT FOR LOOP TO SUBTRACT RESERVED ROOMS FROM FIRST PASS
-        
-
-        
-        
+          
         //int numOfCols = 1; 
-        
+        System.Diagnostics.Debug.WriteLine("Checking rooms in the reserved rooms table."); 
         ///TEST PRINT
-        /*
-        for (int i = 0; i < testView.Table.Rows.Count; i++)
+        
+        for (int i = 0; i < allRowsCounter; i++)
         {
-            for (int j = 0; j < numOfCols; j++)
+            for (int j = 0; j < reservedCounter; j++)
             {
-                System.Diagnostics.Debug.Write(testView.Table.Rows[i][j] + "  ");
+                System.Diagnostics.Debug.WriteLine(firstRoomsPass.Table.Rows[i][0]);
+                System.Diagnostics.Debug.WriteLine(firstRoomsPass.Table.Rows[i][1]);
+                System.Diagnostics.Debug.WriteLine(firstRoomsPass.Table.Rows[i][2]);
+                System.Diagnostics.Debug.WriteLine(firstRoomsPass.Table.Rows[i][3]);
+                System.Diagnostics.Debug.WriteLine("Reserved Table:::::::::::::: ");
+                System.Diagnostics.Debug.WriteLine(reserved.Table.Rows[j][0]);
 
+                if( firstRoomsPass.Table.Rows[i][1].ToString() == reserved.Table.Rows[j][0].ToString())
+                {
+                    System.Diagnostics.Debug.WriteLine("Rooms to be removed from the first pass table:::::::: "); 
+                    System.Diagnostics.Debug.WriteLine(reserved.Table.Rows[j][0].ToString()); 
+                    firstRoomsPass.Table.Rows.RemoveAt(i);
+                    allRowsCounter = allRowsCounter - 1;
+                    i = i - 1; 
+                    
+                }
             }
 
             System.Diagnostics.Debug.WriteLine(" ");
-        }*/
+        }
 
-            return testView; 
+        return firstRoomsPass; 
     }
 
     private string getDayCode(string usrDayOfWeek)

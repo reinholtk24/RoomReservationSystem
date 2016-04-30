@@ -18,3 +18,55 @@ SCIEN,S203,science_chair@email.edu,90,0,0,1,0
 SCIEN,S300,science_chair@email.edu,40,0,0,0,0
 SCIEN,S301,science_chair@email.edu,30,0,1,0,0
 SCIEN,S302,science_chair@email.edu,30,0,0,1,1
+ENG,100,winfrey@concord.edu,40,0,0,1,1
+ENG,101,winfrey@concord.edu,52,0,0,1,1
+ENG,102,winfrey@concord.edu,61,0,0,1,1
+ENG,103,winfrey@concord.edu,30,0,0,1,1
+ENG,201,winfrey@concord.edu,20,0,0,1,1
+ENG,202,winfrey@concord.edu,88,0,0,1,1
+ENG,203,winfrey@concord.edu,60,0,0,1,1
+ENG,200,winfrey@concord.edu,60,0,0,1,1
+ENG,300,winfrey@concord.edu,60,0,0,1,1
+ENG,301,winfrey@concord.edu,60,0,0,1,1
+ENG,400,winfrey@concord.edu,60,0,0,1,1
+ENG,401,winfrey@concord.edu,60,0,0,1,1
+MATH,100,winfrey@concord.edu,30,1,0,0,0
+MATH,101,winfrey@concord.edu,30,0,0,1,0
+MATH,102,winfrey@concord.edu,40,0,0,0,0
+MATH,103,winfrey@concord.edu,40,0,1,0,0
+MATH,201,winfrey@concord.edu,30,0,0,1,1
+MATH,202,winfrey@concord.edu,40,0,0,1,1
+MATH,203,winfrey@concord.edu,40,1,0,0,0
+MATH,200,winfrey@concord.edu,30,0,0,1,0
+MATH,300,winfrey@concord.edu,30,0,0,0,0
+MATH,301,winfrey@concord.edu,30,0,1,0,0
+MATH,400,winfrey@concord.edu,40,0,0,1,1
+MATH,401,winfrey@concord.edu,40,0,0,1,1
+SC,100,some_body@email.edu,30,0,0,1,0
+SC,101,winfrey@concord.edu,30,0,0,0,0
+SC,102,some_body@email.edu,30,0,0,1,0
+SC,103,winfrey@concord.edu,30,0,0,0,0
+SC,104,winfrey@concord.edu,30,0,0,1,0
+SC,105,some_body@email.edu,30,0,0,0,0
+SC,106,some_body@email.edu,30,0,0,1,0
+SC,107,some_body@email.edu,30,0,0,0,0
+SC,108,winfrey@concord.edu,30,0,0,0,0
+SC,109,some_body@email.edu,30,0,0,0,0
+SCI,100,winfrey@concord.edu,35,0,1,0,0
+SCI,101,science_chair@email.edu,30,0,0,1,1
+SCI,102,winfrey@concord.edu,40,0,0,1,1
+SCI,200,science_chair@email.edu,55,0,0,1,1
+SCI,201,winfrey@concord.edu,20,1,0,1,1
+SCI,202,science_chair@email.edu,35,1,0,0,0
+SCI,203,winfrey@concord.edu,90,0,0,1,0
+SCI,300,science_chair@email.edu,40,0,0,0,0
+SCI,301,winfrey@concord.edu,30,0,1,0,0
+SCI,302,winfrey@concord.edu,30,0,0,1,1
+TEC ,11,winfrey@concord.edu,30,0,0,0,0
+TEC ,12,science_chair@email.edu,30,0,0,0,0
+TEC ,13,winfrey@concord.edu,30,0,0,0,0
+TEC ,14,science_chair@email.edu,35,0,1,0,0
+TEC ,15,winfrey@concord.edu,30,0,0,1,1
+TEC ,16,science_chair@email.edu,40,0,0,1,1
+TEC ,17,winfrey@concord.edu,55,0,0,1,1
+TEC ,18,winfrey@concord.edu,20,1,0,1,1
