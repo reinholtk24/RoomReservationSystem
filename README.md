@@ -113,6 +113,8 @@ The code can be found: [HERE]( https://github.com/reinholtk24/RoomReservationSys
 #Account/ViewRooms.aspx
 
 #Account/ViewRooms.aspx.cs 
+The documentation for this file can be found: [HERE](https://docs.google.com/document/d/1UnjlIQ7Nfa_yYB_4yQtKWoqZJ1-AjmZwNVfXI2_eC04/edit?usp=sharing)           
+The code can be found: [HERE]( https://github.com/reinholtk24/RoomReservationSystem/blob/master/Frontend/Site/WebSite1/Account/ViewRooms.aspx.cs)     
 
 
 
