@@ -36,7 +36,7 @@ please refer to section 1.2 File Format in the user's manual. (user's manual wil
 
 RRSDB.db    
 
-Contains 4 tables right now (this may change with time): 
+Contains 5 tables right now (this may change with time): 
 
 |TABLEs                              |           
 | ---------------------------------- |   
