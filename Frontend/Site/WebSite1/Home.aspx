@@ -17,7 +17,7 @@
     </h2>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button align="center" ID="selectRoom" runat="server" Height="37px" Width="260px" OnClick="selectRoom_Click" Text="Confirm Selection" Visible="False" PostBackUrl="~/Account/Login.aspx" CssClass="btn"/>
+        <asp:Button align="center" ID="selectRoom" runat="server" Height="37px" Width="260px" Text="Confirm Selection" Visible="False" PostBackUrl="~/Account/Login.aspx" CssClass="btn"/>
     </p>
     <h2 id="buildingHeader">
         <asp:Label ID="Label1" runat="server" CssClass="label" Text="Building"></asp:Label>
@@ -46,9 +46,9 @@
         <asp:DropDownList ID="timeDropDownList" runat="server" Enabled="False" OnSelectedIndexChanged="timeDropDownList_SelectedIndexChanged" Visible="False" AutoPostBack="True" ForeColor="Black" CssClass="dropdown">
         </asp:DropDownList>
          &nbsp;&nbsp;&nbsp;<asp:Button ID="viewButton" runat="server" Height="37px" OnClick="Button1_Click1" Text="View Rooms" Width="185px" Visible="False" CssClass="btn" />
-        &nbsp;<asp:SqlDataSource ID="buildings" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [buildings]" OnSelecting="buildings_Selecting" ></asp:SqlDataSource>
-        <asp:SqlDataSource ID="room_status" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" OnSelecting="room_status_Selecting" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [room_status]"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="rooms" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [rooms]" OnSelecting="rooms_Selecting"></asp:SqlDataSource>
+        &nbsp;<asp:SqlDataSource ID="buildings" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [buildings]" ></asp:SqlDataSource>
+        <asp:SqlDataSource ID="room_status" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [room_status]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="rooms" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [rooms]"></asp:SqlDataSource>
         </h2>
     <h2>
         <asp:SqlDataSource ID="reservedData" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [room_number] FROM [rooms_reserved] WHERE (([date] = ?) AND ([start_time] = ?) AND ([approved] &lt;&gt; ?) AND ([building_code] = ?))">

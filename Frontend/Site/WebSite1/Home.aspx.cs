@@ -47,7 +47,7 @@ public partial class Home : Page
 
     protected void dateCalendar_SelectionChanged(object sender, EventArgs e)
     {       
-        if(dateCalendar.SelectedDate < dateCalendar.TodaysDate)
+        if(dateCalendar.SelectedDate < dateCalendar.TodaysDate || dateCalendar.SelectedDate > DateTime.Now.AddDays(7))
         {
             dateErrorLabel.Visible = true;
         }
@@ -662,23 +662,6 @@ public partial class Home : Page
         System.Diagnostics.Debug.WriteLine(roomsGridView.Rows.Count);
 
         roomsGridView.Visible = true;
-        
-    }
-
-    protected void buildings_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-    {
-
-    }
-    protected void room_status_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-    {
-
-    }
-    protected void rooms_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-    {
-
-    }
-    protected void selectRoom_Click(object sender, EventArgs e)
-    {
         
     }
 
