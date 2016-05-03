@@ -79,8 +79,10 @@ public partial class Home : Page
 
     protected void buildingSelected()
     {
+
         dateLabel.Visible = true;
         dateCalendar.Enabled = true;
+        dateCalendar.SelectedDate = DateTime.Today; 
         dateCalendar.Visible = true;
     }
 
@@ -299,7 +301,8 @@ public partial class Home : Page
         string usr_day_code = getDayCode(usr_day); 
 
         DataView totalRooms = generateRoomsQuery(buildingCode); //This generates the initial query to display to the user
-        System.Diagnostics.Debug.WriteLine("Printing totalRooms Count"); 
+        System.Diagnostics.Debug.WriteLine("Printing totalRooms Count");
+        System.Diagnostics.Debug.WriteLine(totalRooms.Table.Rows.Count.ToString()); 
 
         int num = totalRooms.Table.Rows.Count;
         for (int i = 0; i < num; i++)
@@ -516,7 +519,7 @@ public partial class Home : Page
     {
         int allRowsCounter = allRooms.Table.Rows.Count; 
         int classRowsCounter = roomsHaveClass.Table.Rows.Count;
-        List<int> rowsToRemove = new List<int>();
+        //List<int> rowsToRemove = new List<int>();
 
         for (int i = 0; i < classRowsCounter; i++)
         {
@@ -524,8 +527,18 @@ public partial class Home : Page
             {
                 if( allRooms.Table.Rows[j][1].ToString() == roomsHaveClass.Table.Rows[i][1].ToString() ) //This means the room is in both queries and needs to be removed from the total rooms query. 
                 {
-                    rowsToRemove.Add(j); 
-                    System.Diagnostics.Debug.WriteLine("Oh Yeah"); 
+                    allRooms.Table.Rows.RemoveAt(j);
+                    allRowsCounter = allRowsCounter - 1;
+                    if(j == 0)
+                    {
+                        j = 0; 
+                        continue; 
+                    }
+                    else
+                    {
+                        j = j - 1;
+                    }
+                     
                 }
                 else
                 {
@@ -535,11 +548,6 @@ public partial class Home : Page
                 }
             }
 
-        }
-
-        for(int k = 0; k < rowsToRemove.Count; k++)
-        {
-            allRooms.Table.Rows.RemoveAt(rowsToRemove[k]);
         }
 
         return allRooms; 
@@ -677,7 +685,20 @@ public partial class Home : Page
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
         roomsGridView.Visible = true;
+        dateErrorLabel.Visible = false; 
         selectRoom.Visible = true;
+        foreach (GridViewRow gridRow in roomsGridView.Rows)
+        {
+            if(gridRow.RowIndex != roomsGridView.SelectedIndex)
+            {
+                gridRow.Visible = false; 
+            }
+            else
+            {
+                gridRow.Visible = true; 
+
+            }
+        }
         getRow(); 
     }
 

@@ -3,13 +3,15 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>ROOM RESERVATION SYSTEM.</h2>
     <h2>
-        <asp:GridView ID="roomsGridView" runat="server" AutoGenerateColumns="False" Height="420px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" ViewStateMode="Enabled" Visible="False" Width="989px" AutoGenerateSelectButton="True" CssClass="table-striped">
+        <asp:GridView ID="roomsGridView" runat="server" AutoGenerateColumns="False" Height="100px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" ViewStateMode="Enabled" Visible="False" Width="989px" AutoGenerateSelectButton="True" CssClass="table-striped">
             <Columns>
                 <asp:BoundField DataField="Building Code" HeaderText="Building Code" SortExpression="Building Code" />
                 <asp:BoundField DataField="Room Number" HeaderText="Room Number" SortExpression="Room Number" />
                 <asp:BoundField DataField="Owner" HeaderText="Owner" SortExpression="Owner" />
                 <asp:BoundField DataField="Number Of Seats" HeaderText="Number Of Seats" SortExpression="Number Of Seats" />
             </Columns>
+            <HeaderStyle Height="45px" />
+            <RowStyle Height="45px" />
             <SelectedRowStyle BackColor="#FF6600" />
         </asp:GridView>
     </h2>
@@ -28,7 +30,7 @@
         </h2>
     <p>
         <asp:Label ID="dateLabel" runat="server" Text="Date" Visible="False" CssClass="label" Font-Size="X-Large"></asp:Label>
-        &nbsp;<asp:Label ID="dateErrorLabel" runat="server" ForeColor="#FF3300" Text="Please Select Valid Date" Visible="False"></asp:Label>
+        &nbsp;<asp:Label ID="dateErrorLabel" runat="server" Text="Please Select Valid Date" Visible="False" CssClass="label-danger"></asp:Label>
         &nbsp;    &nbsp;<asp:Calendar ID="dateCalendar" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Enabled="False" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" OnSelectionChanged="dateCalendar_SelectionChanged" Visible="False" Width="350px" NextPrevFormat="FullMonth">
         <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
         <NextPrevStyle Font-Size="8pt" ForeColor="#333333" Font-Bold="True" VerticalAlign="Bottom" />
