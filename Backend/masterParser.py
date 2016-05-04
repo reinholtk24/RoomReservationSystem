@@ -24,10 +24,10 @@ def roomExist(roomNumber, BLDCode):
         print(roomFound)
         return True
 
-def masterParser( CSVFile ):
+def masterParser( CSVFile ): #CSVFile must be full filepath name
 
-    if( CSVFile == "users.csv" ):
-
+    if( CSVFile[CSVFile.rfind('/')+1:len(CSVFile)] == "users.csv" ):
+        
         rowsInUsersDataCSV = [] #Stores each row from the csv file in a string. 
         NUMBEROFCOLUMNSINTABLE = 6
         colsInCurrentRow = [] #Stores each column in the current row, each location contains a string 
@@ -92,7 +92,7 @@ def masterParser( CSVFile ):
 
                     
 #Denny and Trevor's parsers ####################################################        
-    elif( CSVFile == "buildings.csv" ):
+    elif( CSVFile[CSVFile.rfind('/')+1:len(CSVFile)] == "buildings.csv" ):
         #this parser will read in buildings.csv, validate data and store the csv
         #in a list of lists
         sqlite_dbname = 'RRSDB.db'
@@ -103,14 +103,6 @@ def masterParser( CSVFile ):
             temp = csv.reader(buildingsfile, delimiter = ',', quotechar='"')
             for row in temp:
                 #check to make sure row has 8 fields
-                row[0] = row[0].strip()
-                row[1] = row[1].strip()
-                row[2] = row[2].strip()
-                row[3] = row[3].strip()
-                row[4] = row[4].strip() 
-                row[5] = row[5].strip() 
-                row[6] = row[6].strip() 
-                row[7] = row[7].strip()
                 if len(row) != NUMBEROFCOLUMNSINBUILDINGTABLE:
                     print("Error, row ",rowCount," does not have 8 column entries!")
                     break
@@ -136,12 +128,12 @@ def masterParser( CSVFile ):
             #check to make sure data doesn't exit in table
             #building[0] #building name
             #split buildings into parts and store in each building table
-            cur.execute("INSERT OR REPLACE INTO buildings VALUES(?,?,?,?,?,?,?,?)",building)
+            cur.execute("INSERT INTO buildings VALUES(?,?,?,?,?,?,?,?)",building)
         #commit changes and close
         conn.commit()
         conn.close()
         
-    elif( CSVFile == "rooms.csv" ):
+    elif( CSVFile[CSVFile.rfind('/')+1:len(CSVFile)] == "rooms.csv" ):
         #this parser will read in rooms.csv, validate the data and store the csv
         #in a list of lists
         sqlite_dbname = 'RRSDB.db'
@@ -192,7 +184,7 @@ def masterParser( CSVFile ):
         conn.close()            
         
 #End Denny and Trevor's parsers ################################################
-    elif( CSVFile == "room_status.csv" ):
+    elif( CSVFile[CSVFile.rfind('/')+1:len(CSVFile)] == "room_status.csv" ):
         
         rowsInUsersDataCSV = []
         NUMBEROFCOLUMNSINTABLE = 13
@@ -277,7 +269,7 @@ def masterParser( CSVFile ):
 
 
 
-masterParser("room_status.csv")        
+#masterParser("rooms.csv")        
 
 
 
