@@ -54,7 +54,7 @@ For table data definitions, refer to this:
 
 room_status.csv and users.csv are used as example files for the masterParser.py 
 
-TODO: Create a GUI for the user to specify file paths and populate the database with their institutions room and user info. 
+GUI was created in Python3 using tkinter. The gui saves the locations of the filepaths and calls the masterParser.py module when the user clicks "Submit"
 
 #Frontend 
 
