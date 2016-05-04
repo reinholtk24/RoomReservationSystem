@@ -84,8 +84,8 @@ These are the most relevant files from the front end:
 This file contains the layout for the homepage. Keep in mind that this site is intended for integration with an existing system.     
 There is not any navigation, or explanations about the website on this page. It is a user interface intended for the user to select a building,
 date, and time so that the a list of availble rooms from that institution may be populated and presented to the user.    
-
-TODO: Finish this list with the correct identifiers     
+The technial documentation can be found [here](https://docs.google.com/document/d/1EtXsLJdW3pwCyw3xOwooxUzC5nP4J6UgdZEKeuFDxUc/edit?usp=sharing)
+    
 This file consists of the following Web Objects:     
 1. Sqlite Data Connection      
 2. Rooms Available GridView      
@@ -103,6 +103,7 @@ The documentation can be found [here](https://docs.google.com/document/d/1aPTLqm
 The file can be found [here](https://github.com/reinholtk24/RoomReservationSystem/blob/clean/Frontend/Site/WebSite1/Home.aspx.cs)
 
 #Account/Login.aspx
+The technial documentation can be found [here](https://docs.google.com/document/d/1EtXsLJdW3pwCyw3xOwooxUzC5nP4J6UgdZEKeuFDxUc/edit?usp=sharing)
 
 #Account/Login.aspx.cs
       
@@ -111,6 +112,7 @@ The documentation for this file can be found: [HERE]( https://docs.google.com/do
 The code can be found: [HERE]( https://github.com/reinholtk24/RoomReservationSystem/blob/master/Frontend/Site/WebSite1/Account/Login.aspx.cs)           
 
 #Account/ViewRooms.aspx
+The technial doumentation can be found [here](https://docs.google.com/document/d/1kEH3R_gPYJItneco9vKskTXIN2rcGuiq7bLOWOkctCI/edit?usp=sharing)
 
 #Account/ViewRooms.aspx.cs 
 The documentation for this file can be found: [HERE](https://docs.google.com/document/d/1UnjlIQ7Nfa_yYB_4yQtKWoqZJ1-AjmZwNVfXI2_eC04/edit?usp=sharing)           
