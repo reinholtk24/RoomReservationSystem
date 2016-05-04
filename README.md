@@ -103,7 +103,7 @@ The documentation can be found [here](https://docs.google.com/document/d/1aPTLqm
 The file can be found [here](https://github.com/reinholtk24/RoomReservationSystem/blob/clean/Frontend/Site/WebSite1/Home.aspx.cs)
 
 #Account/Login.aspx
-The technial documentation can be found [here](https://docs.google.com/document/d/1EtXsLJdW3pwCyw3xOwooxUzC5nP4J6UgdZEKeuFDxUc/edit?usp=sharing)
+The technial documentation can be found [here](https://docs.google.com/document/d/19MejG-RzPMgQjyVlJAR9uWTyIp4ghppn4hb5ZDYDI6c/edit?usp=sharing)
 
 #Account/Login.aspx.cs
       
